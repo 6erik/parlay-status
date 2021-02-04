@@ -1,18 +1,13 @@
 $( document ).ready(function() {
-    let endpoint = 'https://scores.weaklytyped.com/api/v1/sports/'
 
     $.ajax({
-        url: endpoint + 'nba' +'/events',
-        type: 'GET',
-        dataType: 'json',
-        contentType: "application/json",
-        headers: {
-            'Access-Control-Allow-Origin' : '*',
-            'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-            },
+        url: "https://scores.weaklytyped.com/api/v1/sports/nba/events",
+        type: "GET",
+        dataType: "json",
+        crossDomain: true,
         success: function(result){
             console.log(result);
         }
-    });
+    }); 
 
 });
