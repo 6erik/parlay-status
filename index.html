@@ -14,21 +14,37 @@
                 <h1>Parlay Status</h1>
             </header>
 
-            <section id="fetch">
-                <input type="text" placeholder="Enter an NBA team" id="term" />
-                <button id="search">Check status</button>
-            </section>
+            <div id="gamesNBA">
+                <div>
+                    <button id="listNBA">NBA - List games</button>
+                </div>
+    
+                <table id="tableNBA" class="hidden">
+                    <tr>
+                        <th>Game</th>
+                        <th>Away Points</th>
+                        <th>Home Points</th>
+                    </tr>
+                </table>
 
-            <table id="table" class="hidden">
-                <tr>
-                    <th>Game</th>
-                    <th>Away Pts</th>
-                    <th>Home Pts</th>
-                </tr>
-            </table>
+            </div>
+
+            <div id="gamesNCAAM">
+                <div>
+                    <button id="listNCAAM">NCAAM - List games</button>
+                </div>
+    
+                <table id="tableNCAAM" class="hidden">
+                    <tr>
+                        <th>Game</th>
+                        <th>Away Points</th>
+                        <th>Home Points</th>
+                    </tr>
+                </table>                
+            </div>
 
             <footer>
-                <p>footer here</p>
+                <p>--</p>
             </footer>
         </div>
 
