@@ -25,18 +25,28 @@ $( document ).ready(function() {
     const url1 = "http://gobetween.oklabs.org/";
     const url2 = "https://cors-anywhere.herokuapp.com/";
 
+    const urlAPI = "https://score-board-api.herokuapp.com/api/v1/sports/mlb/events"
+
     
 
     console.log("app.js: Document ready (bottom)")
 
 });
 
+$('#tableNBA').click(function(event) {
+    let target = event.target;
+    console.log(target);
+});
+
 
 $('#listNBA').click(function() {
-    const url2 = "https://cors-anywhere.herokuapp.com/";
+    const urlCORS = "https://cors-anywhere.herokuapp.com/";
+    const urlAPI = "https://score-board-api.herokuapp.com/api/v1/sports/nba/events"
+
+    $("#tableNBA tr").remove(); 
 
     $.ajax({
-        url: url2 + "https://scores.weaklytyped.com/api/v1/sports/nba/events",
+        url: urlCORS + urlAPI,
         crossDomain: "false",
         success: function(result){
             if (result) {
@@ -45,13 +55,12 @@ $('#listNBA').click(function() {
 
                 if(len > 0){
                     for(var i = 0; i < len; i++){
-                        let game = result.scores[0].shortName;
-                        let awayScore = result.scores[0].teams.awayTeam.score;
-                        let homeScore = result.scores[0].teams.homeTeam.score;
+                        let game = result.scores[i].shortName;
+                        let awayScore = result.scores[i].teams.awayTeam.score;
+                        let homeScore = result.scores[i].teams.homeTeam.score;
 
-                        console.log(game + " " + awayScore + " " + homeScore);
-
-                            str += "<tr><td>" + game + "</td><td>" + awayScore + "</td><td>" + homeScore + "</td></tr>";
+                        str += "<tr><td>" + game + "</td><td>" + awayScore + "</td><td>" + homeScore;
+                        str += "</td><td><button id=\"button" + i + "\">Add</button>" +  "</td></tr>";
                         }
                     }
                     if(str != ""){
@@ -67,10 +76,14 @@ $('#listNBA').click(function() {
 });
 
 $('#listNCAAM').click(function() {
-    const url2 = "https://cors-anywhere.herokuapp.com/";
+    const urlCORS = "https://cors-anywhere.herokuapp.com/";
+    const urlAPI = "https://score-board-api.herokuapp.com/api/v1/sports/ncaam/events"
+
+    var ncaamtable = document.getElementById("tableNCAAM");
+    ncaamtable.innerHTML = "";
 
     $.ajax({
-        url: url2 + "https://scores.weaklytyped.com/api/v1/sports/ncaam/events",
+        url: urlCORS + urlAPI,
         crossDomain: "false",
         success: function(result){
             if (result) {
@@ -79,11 +92,9 @@ $('#listNCAAM').click(function() {
 
                 if(len > 0){
                     for(var i = 0; i < len; i++){
-                        let game = result.scores[0].shortName;
-                        let awayScore = result.scores[0].teams.awayTeam.score;
-                        let homeScore = result.scores[0].teams.homeTeam.score;
-
-                        console.log(game + " " + awayScore + " " + homeScore);
+                        let game = result.scores[i].shortName;
+                        let awayScore = result.scores[i].teams.awayTeam.score;
+                        let homeScore = result.scores[i].teams.homeTeam.score;
 
                             str += "<tr><td>" + game + "</td><td>" + awayScore + "</td><td>" + homeScore + "</td></tr>";
                         }
