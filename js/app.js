@@ -1,9 +1,33 @@
 $( document ).ready(function() {
+    console.log("app.js: Document ready (top)")
+
+    class Parlay {
+        constructor() {
+            this.games = [];
+            this.legCount = 0;
+        }
+
+        addLeg(game) {
+            this.games.push(game);
+            this.legCount += 1;
+        }
+
+        removeLeg(gameIndex) {
+            this.games.splice(gameIndex, 1);
+            this.legCount -= 1;
+        }
+
+        getLegCount() {
+            return this.legCount;
+        }
+    }
 
     const url1 = "http://gobetween.oklabs.org/";
     const url2 = "https://cors-anywhere.herokuapp.com/";
 
-    console.log("app.js - Document ready")
+    
+
+    console.log("app.js: Document ready (bottom)")
 
 });
 
