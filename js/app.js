@@ -1,45 +1,59 @@
+class Parlay {
+    constructor() {
+        this.games = [];
+        this.legCount = 0;
+    }
+
+    addLeg(game) {
+        this.games.push(game);
+        this.legCount += 1;
+        console.log(this.games);
+    }
+
+    removeLeg(gameIndex) {
+        this.games.splice(gameIndex, 1);
+        this.legCount -= 1;
+    }
+
+    getLegCount() {
+        return this.legCount;
+    }
+}
+
+class Leg {
+    constructor(id, league) {
+        this.id = id;
+        this.league = league;
+    }
+}
+
+let parlay = new Parlay();
+
 $( document ).ready(function() {
     console.log("app.js: Document ready (top)")
-
-    class Parlay {
-        constructor() {
-            this.games = [];
-            this.legCount = 0;
-        }
-
-        addLeg(game) {
-            this.games.push(game);
-            this.legCount += 1;
-        }
-
-        removeLeg(gameIndex) {
-            this.games.splice(gameIndex, 1);
-            this.legCount -= 1;
-        }
-
-        getLegCount() {
-            return this.legCount;
-        }
-    }
 
     const url1 = "http://gobetween.oklabs.org/";
     const url2 = "https://cors-anywhere.herokuapp.com/";
 
-    const urlAPI = "https://score-board-api.herokuapp.com/api/v1/sports/mlb/events"
-
-    
+    const urlAPI = "https://score-board-api.herokuapp.com/api/v1/sports/mlb/events";
 
     console.log("app.js: Document ready (bottom)")
 
 });
 
 $('#tableNBA').click(function(event) {
-    let target = event.target;
-    console.log(target);
+    let targetID = event.target.id;
+    let buttonNum = targetID.substr(targetID.length - 1);
+
+    let leg = new Leg(buttonNum, "NBA");
+
+    parlay.addLeg(leg);
 });
 
 
 $('#listNBA').click(function() {
+
+    console.log("app.js: Clicked 'listNBA' button")
     const urlCORS = "https://cors-anywhere.herokuapp.com/";
     const urlAPI = "https://score-board-api.herokuapp.com/api/v1/sports/nba/events"
 
